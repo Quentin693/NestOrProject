@@ -1,0 +1,355 @@
+{
+  "info": {
+    "name": "NestOr API",
+    "description": "Collection complète pour tester l'API de gestion de pizzas et commandes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Pizzas",
+      "item": [
+        {
+          "name": "GET - Toutes les pizzas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/pizzas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["pizzas"]
+            }
+          }
+        },
+        {
+          "name": "GET - Recherche par prix max",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/pizzas/search?maxPrice=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["pizzas", "search"],
+              "query": [
+                {
+                  "key": "maxPrice",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET - Recherche par ingrédient",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/pizzas/search?ingredient=mozzarella",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["pizzas", "search"],
+              "query": [
+                {
+                  "key": "ingredient",
+                  "value": "mozzarella"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET - Recherche combinée",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/pizzas/search?maxPrice=12&ingredient=tomate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["pizzas", "search"],
+              "query": [
+                {
+                  "key": "maxPrice",
+                  "value": "12"
+                },
+                {
+                  "key": "ingredient",
+                  "value": "tomate"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Commandes",
+      "item": [
+        {
+          "name": "GET - Toutes les commandes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "GET - Commandes en cours",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/orders?processed=false",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders"],
+              "query": [
+                {
+                  "key": "processed",
+                  "value": "false"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET - Commandes terminées",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/orders?processed=true",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders"],
+              "query": [
+                {
+                  "key": "processed",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET - Détail commande",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST - Créer commande (VALIDE)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pizzas\": [1, 2, 3]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3009/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "POST - Créer commande (INVALIDE - tableau vide)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pizzas\": []\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3009/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "POST - Créer commande (INVALIDE - pizzas manquant)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "http://localhost:3009/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "POST - Créer commande (INVALIDE - pizzas non nombre)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pizzas\": [\"a\", \"b\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3009/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier commande (VALIDE)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pizzas\": [1, 5],\n  \"processed\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3009/orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Modifier commande (INVALIDE - processed non booléen)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pizzas\": [1],\n  \"processed\": \"oui\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3009/orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "PATCH - Marquer comme terminée",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/orders/1/processed",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders", "1", "processed"]
+            }
+          }
+        },
+        {
+          "name": "PATCH - Modifier le prix",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/orders/1?field=price&value=25",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders", "1"],
+              "query": [
+                {
+                  "key": "field",
+                  "value": "price"
+                },
+                {
+                  "key": "value",
+                  "value": "25"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Supprimer commande",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/orders/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3009",
+              "path": ["orders", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

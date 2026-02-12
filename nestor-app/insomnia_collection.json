@@ -1,0 +1,136 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "resources": [
+    {
+      "_id": "wrk_nestor",
+      "_type": "workspace",
+      "name": "NestOr API",
+      "description": "API de gestion de pizzas et commandes"
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3009"
+      }
+    },
+    {
+      "_id": "fld_pizzas",
+      "_type": "request_group",
+      "name": "Pizzas",
+      "parentId": "wrk_nestor"
+    },
+    {
+      "_id": "req_get_all_pizzas",
+      "_type": "request",
+      "name": "GET - Toutes les pizzas",
+      "method": "GET",
+      "url": "{{ _.base_url }}/pizzas",
+      "parentId": "fld_pizzas"
+    },
+    {
+      "_id": "req_search_price",
+      "_type": "request",
+      "name": "GET - Recherche par prix max",
+      "method": "GET",
+      "url": "{{ _.base_url }}/pizzas/search?maxPrice=10",
+      "parentId": "fld_pizzas"
+    },
+    {
+      "_id": "req_search_ingredient",
+      "_type": "request",
+      "name": "GET - Recherche par ingrédient",
+      "method": "GET",
+      "url": "{{ _.base_url }}/pizzas/search?ingredient=mozzarella",
+      "parentId": "fld_pizzas"
+    },
+    {
+      "_id": "fld_orders",
+      "_type": "request_group",
+      "name": "Commandes",
+      "parentId": "wrk_nestor"
+    },
+    {
+      "_id": "req_get_all_orders",
+      "_type": "request",
+      "name": "GET - Toutes les commandes",
+      "method": "GET",
+      "url": "{{ _.base_url }}/orders",
+      "parentId": "fld_orders"
+    },
+    {
+      "_id": "req_get_order_by_id",
+      "_type": "request",
+      "name": "GET - Détail commande",
+      "method": "GET",
+      "url": "{{ _.base_url }}/orders/1",
+      "parentId": "fld_orders"
+    },
+    {
+      "_id": "req_create_order_valid",
+      "_type": "request",
+      "name": "POST - Créer commande (VALIDE)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/orders",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"pizzas\": [1, 2, 3]\n}"
+      },
+      "parentId": "fld_orders"
+    },
+    {
+      "_id": "req_create_order_invalid_empty",
+      "_type": "request",
+      "name": "POST - Créer commande (INVALIDE - tableau vide)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/orders",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"pizzas\": []\n}"
+      },
+      "parentId": "fld_orders"
+    },
+    {
+      "_id": "req_create_order_invalid_missing",
+      "_type": "request",
+      "name": "POST - Créer commande (INVALIDE - pizzas manquant)",
+      "method": "POST",
+      "url": "{{ _.base_url }}/orders",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{}"
+      },
+      "parentId": "fld_orders"
+    },
+    {
+      "_id": "req_update_order_valid",
+      "_type": "request",
+      "name": "PUT - Modifier commande (VALIDE)",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/orders/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"pizzas\": [1, 5],\n  \"processed\": true\n}"
+      },
+      "parentId": "fld_orders"
+    },
+    {
+      "_id": "req_mark_processed",
+      "_type": "request",
+      "name": "PATCH - Marquer comme terminée",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/orders/1/processed",
+      "parentId": "fld_orders"
+    },
+    {
+      "_id": "req_delete_order",
+      "_type": "request",
+      "name": "DELETE - Supprimer commande",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/orders/1",
+      "parentId": "fld_orders"
+    }
+  ]
+}
