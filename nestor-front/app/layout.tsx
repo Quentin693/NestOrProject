@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Nest-or | Pizzeria Italienne',
+  icons: {
+    icon: '/nestorlogo.jpeg',
+  },
   description: 'Délicieuses pizzas italiennes faites maison avec des ingrédients frais',
 };
 

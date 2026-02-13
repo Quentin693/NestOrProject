@@ -33,4 +33,35 @@ export class PizzasService {
 
     return results;
   }
+
+  findOne(id: string): Pizza | undefined {
+    return this.pizzas.find(pizza => pizza.id === id);
+  }
+
+  create(pizza: Omit<Pizza, 'id'>): Pizza {
+    const newId = (Math.max(...this.pizzas.map(p => parseInt(p.id))) + 1).toString();
+    const newPizza: Pizza = {
+      id: newId,
+      ...pizza,
+    };
+    this.pizzas.push(newPizza);
+    return newPizza;
+  }
+
+  update(id: string, pizzaUpdate: Partial<Pizza>): Pizza {
+    const index = this.pizzas.findIndex(pizza => pizza.id === id);
+    if (index === -1) {
+      throw new Error(`Pizza avec l'id ${id} introuvable`);
+    }
+    this.pizzas[index] = { ...this.pizzas[index], ...pizzaUpdate };
+    return this.pizzas[index];
+  }
+
+  remove(id: string): void {
+    const index = this.pizzas.findIndex(pizza => pizza.id === id);
+    if (index === -1) {
+      throw new Error(`Pizza avec l'id ${id} introuvable`);
+    }
+    this.pizzas.splice(index, 1);
+  }
 }

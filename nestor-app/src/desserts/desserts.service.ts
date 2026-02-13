@@ -18,4 +18,31 @@ export class DessertsService {
   findOne(id: number): Dessert | undefined {
     return this.desserts.find(dessert => dessert.id === id);
   }
+
+  create(dessert: Omit<Dessert, 'id'>): Dessert {
+    const newId = Math.max(...this.desserts.map(d => d.id)) + 1;
+    const newDessert: Dessert = {
+      id: newId,
+      ...dessert,
+    };
+    this.desserts.push(newDessert);
+    return newDessert;
+  }
+
+  update(id: number, dessertUpdate: Partial<Dessert>): Dessert {
+    const index = this.desserts.findIndex(dessert => dessert.id === id);
+    if (index === -1) {
+      throw new Error(`Dessert avec l'id ${id} introuvable`);
+    }
+    this.desserts[index] = { ...this.desserts[index], ...dessertUpdate };
+    return this.desserts[index];
+  }
+
+  remove(id: number): void {
+    const index = this.desserts.findIndex(dessert => dessert.id === id);
+    if (index === -1) {
+      throw new Error(`Dessert avec l'id ${id} introuvable`);
+    }
+    this.desserts.splice(index, 1);
+  }
 }

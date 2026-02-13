@@ -91,6 +91,29 @@ npm run dev
 - ✅ **CORS configuré** pour le frontend
 - ✅ **Recherche et filtres** (pizzas par prix/ingrédients)
 
+### 🔍 API Explorer
+
+- ✅ **Interface interactive** pour explorer tous les endpoints
+- ✅ **Test en un clic** de chaque endpoint
+- ✅ **Visualisation des réponses** en temps réel
+- ✅ **Copie des commandes cURL** pour documentation
+- ✅ **25 endpoints** documentés et testables
+- ✅ **Accessible via** http://localhost:3000/api-explorer
+
+📖 Documentation complète : [API_EXPLORER_GUIDE.md](./API_EXPLORER_GUIDE.md)
+
+### 🎛️ Panel d'Administration
+
+- ✅ **Interface CRUD complète** pour gérer toutes les ressources
+- ✅ **Gestion des pizzas** : Créer, modifier, supprimer
+- ✅ **Gestion des boissons** : CRUD + disponibilité
+- ✅ **Gestion des desserts** : CRUD + stock
+- ✅ **Gestion des commandes** : Voir, traiter, supprimer
+- ✅ **Interface moderne** avec design responsive
+- ✅ **Accessible via** http://localhost:3000/admin
+
+📖 Documentation complète : [ADMIN_PANEL_DOCUMENTATION.md](./ADMIN_PANEL_DOCUMENTATION.md)
+
 ## 🎨 Design System
 
 ### Palette de Couleurs
@@ -162,15 +185,54 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 ### Backend
 Port par défaut : 3001 (configurable dans `main.ts`)
 
+## 📱 Pages disponibles
+
+### Frontend Routes
+
+| Route | Description | Fonctionnalités |
+|-------|-------------|-----------------|
+| `/` | Page d'accueil | Hero section + Promotion menu |
+| `/menu` | Catalogue complet | Recherche, filtres, tous les produits |
+| `/checkout` | Commande | Formulaire livraison + récapitulatif |
+| `/admin` | **NOUVEAU** Panel d'administration | CRUD complet pour toutes les ressources |
+| `/api-explorer` | Explorateur API | Test des 25 endpoints en temps réel |
+
+### Navigation
+
+```
+Header (sticky)
+├── Menu (gauche)
+│   ├── Lien vers /menu
+│   ├── Bouton Admin (/admin) 🆕
+│   ├── Bouton API (/api-explorer)
+│   └── Téléphone (+ 1 800 222 000)
+├── Logo (centre) → /
+└── Panier (droite)
+    └── Ouvre le drawer de commande
+```
+
 ## 📱 Utilisation
 
+### Commande client
+
 1. **Parcourir** le menu (pizzas, boissons, desserts)
-2. **Cliquer** sur "Ajouter au panier" pour chaque produit
-3. **Ouvrir** le panier via l'icône en haut à droite
-4. **Modifier** les quantités avec +/-
-5. **Supprimer** des articles avec l'icône poubelle
-6. **Voir** le total mis à jour en temps réel
-7. **Commander** (à implémenter)
+2. **Personnaliser** les pizzas (ajouter/retirer ingrédients)
+3. **Cliquer** sur "Ajouter au panier" pour chaque produit
+4. **Ouvrir** le panier via l'icône en haut à droite
+5. **Modifier** les quantités avec +/-
+6. **Bénéficier** de la réduction menu (10% si 1 pizza + 1 boisson sans alcool + 1 dessert)
+7. **Commander** via le bouton "Commander maintenant"
+8. **Remplir** le formulaire de livraison
+9. **Confirmer** et recevoir le numéro de commande
+
+### Test de l'API
+
+1. **Accéder** à http://localhost:3000/api-explorer
+2. **Choisir** une catégorie (Pizzas, Drinks, Desserts, Orders, Menu)
+3. **Sélectionner** un endpoint
+4. **Cliquer** sur "Tester" pour exécuter
+5. **Consulter** les résultats en temps réel
+6. **Copier** les commandes cURL pour documentation
 
 ## 🐛 Dépannage
 

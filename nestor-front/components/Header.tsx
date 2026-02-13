@@ -13,16 +13,23 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-3 items-center h-20 gap-4">
           {/* Gauche - Menu + Téléphone */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-5">
             <Link
               href="/menu"
               className="text-stone-700 hover:text-[#c72027] font-bold text-lg transition-colors"
             >
               Menu
             </Link>
+
+            <Link
+              href="/api-explorer"
+              className="text-stone-600 hover:text-[#c72027] font-medium text-sm transition-colors border border-stone-300 px-3 py-1.5 rounded-lg hover:border-[#c72027] hover:shadow-md"
+            >
+              API
+            </Link>
             <a
               href="tel:0180222000"
-              className="hidden md:flex items-center gap-2 text-stone-700 hover:text-[#c72027] font-semibold transition-colors"
+              className="hidden lg:flex items-center gap-2 text-stone-700 hover:text-[#c72027] font-semibold transition-colors"
             >
               <Phone className="w-4 h-4" />
               <span className="text-sm">+ 1 800 222 000</span>
@@ -56,6 +63,12 @@ export default function Header() {
                 </span>
               )}
             </button>
+            <Link
+              href="/admin"
+              className="text-stone-600 hover:text-[#c72027] font-medium text-sm transition-colors border border-stone-300 px-3 py-1.5 rounded-lg hover:border-[#c72027] hover:shadow-md"
+            >
+              Admin
+            </Link>
           </div>
         </div>
       </div>

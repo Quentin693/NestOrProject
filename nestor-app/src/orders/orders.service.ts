@@ -64,7 +64,8 @@ export class OrdersService {
 
     // Valider et calculer le prix des pizzas
     for (const pizzaId of pizzaIds) {
-      const pizza = allPizzas.find(p => parseInt(p.id) === pizzaId);
+      // Convertir pizzaId en string pour comparer avec p.id qui est un string
+      const pizza = allPizzas.find(p => p.id === pizzaId.toString());
       if (!pizza) {
         throw new NotFoundException(`Pizza avec l'ID ${pizzaId} introuvable`);
       }
